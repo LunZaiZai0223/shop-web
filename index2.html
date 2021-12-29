@@ -7,9 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="./style/style.css">
   <title>WOWOROOM</title>
 </head>
@@ -38,9 +40,30 @@
     </nav>
   </header>
   <div class="header-underline"></div>
-  <div class="banner">
-    使用 swiper 套件
-  </div>
+
+  <section class="my-md-5 banner">
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide"
+          style="background-image: url('https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1460&q=80');">
+        </div>
+        <div class="swiper-slide"
+          style="background-image: url('https://images.unsplash.com/photo-1487300001871-12053913095d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
+          ></div>
+        <div class="swiper-slide"
+          style="background-image: url('https://images.unsplash.com/photo-1493548578639-b0c241186eb0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
+        </div>
+      </div>
+    </div>
+    <div class="banner-text-wrapper">
+      <h3>WOWOROOM</h3>
+      <h3>您一覺好眠的幫手</h3>
+    </div>
+  </section>
+
   <section class="container-xl my-md-5 advantage">
     <h3 class="title">床墊優勢</h3>
     <ul class="row advantage-list">
@@ -107,6 +130,143 @@
     </div>
   </section>
 
+  <section class="recommendation">
+    使用 Swiper 套件達到輪播的效果
+  </section>
+
+  <section class="my-md-5 how">
+    <h3 class="title">購物方式</h3>
+    <ul class="d-flex align-items-cent justify-content-between how-list">
+      <li class="d-flex flex-column align-items-center how-item">
+        <div class="my-3 d-flex justify-content-center align-items-center how-card">
+          <span class="material-icons">
+            shopping_cart
+          </span>
+        </div>
+        <h4>STEP.01</h4>
+        <p>選購商品</p>
+      </li>
+      <li class="d-flex flex-column align-items-center how-item">
+        <div class="my-3 d-flex justify-content-center align-items-center how-card">
+          <span class="material-icons">
+            format_list_numbered
+          </span>
+        </div>
+        <h4>STEP.02</h4>
+        <p>填寫預定資料</p>
+      </li>
+      <li class="d-flex flex-column align-items-center how-item">
+        <div class="my-3 d-flex justify-content-center align-items-center how-card">
+          <span class="material-icons">
+            check_circle
+          </span>
+        </div>
+        <h4>STEP.03</h4>
+        <p>預定成功</p>
+      </li>
+      <li class="d-flex flex-column align-items-center how-item">
+        <div class="my-3 d-flex justify-content-center align-items-center how-card">
+          <span class="material-icons">
+            local_shipping
+          </span>
+        </div>
+        <h4>STEP.04</h4>
+        <p>等待貨物上門</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="container-xl product">
+    <ul class="row product-list">
+      <li class="col-md-3 product-item">
+        <h5 class="product-label">床架</h5>
+        <img
+          src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
+          alt="product image">
+        <a class="product-item-add-btn" href="">加入購物車</a>
+        <div class="d-flex justify-content-between flex-column product-item-content">
+          <h3>Jordan 雙人床架／雙人加大</h3>
+          <span class="product-item-content-original-price">NT$12,000</span>
+          <p class="product-item-content-price">NT$9,000</p>
+        </div>
+      </li>
+      <li class="col-md-3 product-item">
+        <h5 class="product-label">床架</h5>
+        <img
+          src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
+          alt="product image">
+        <a class="product-item-add-btn" href="">加入購物車</a>
+        <div class="product-item-content">
+          <h3>Jordan 雙人床架／雙人加大</h3>
+          <span class="product-item-content-original-price">NT$12,000</span>
+          <p class="product-item-content-price">NT$9,000</p>
+        </div>
+      </li>
+      <li class="col-md-3 product-item">
+        <h5 class="product-label">床架</h5>
+        <img
+          src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
+          alt="product image">
+        <a class="product-item-add-btn" href="">加入購物車</a>
+        <div class="product-item-content">
+          <h3>Jordan 雙人床架／雙人加大</h3>
+          <span class="product-item-content-original-price">NT$12,000</span>
+          <p class="product-item-content-price">NT$9,000</p>
+        </div>
+      </li>
+      <li class="col-md-3 product-item">
+        <h5 class="product-label">床架</h5>
+        <img
+          src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
+          alt="product image">
+        <a class="product-item-add-btn" href="">加入購物車</a>
+        <div class="product-item-content">
+          <h3>Jordan 雙人床架／雙人加大</h3>
+          <span class="product-item-content-original-price">NT$12,000</span>
+          <p class="product-item-content-price">NT$9,000</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <footer class="footer">
+    <div class="container-xl py-md-3">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="footer-logo">
+          LOGO
+        </div>
+        <ul class="d-flex footer-list">
+          <li class="px-3 footer-item">
+            <a href="">關於我們</a>
+          </li>
+          |
+          <li class="px-3 footer-item">
+            <a href="">常見問題</a>
+          </li>
+          |
+          <li class="px-3 footer-item">
+            <a href="">來逛逛吧</a>
+          </li>
+        </ul>
+      </div>
+      <div class="row align-items-center mt-md-5">
+        <div class="col-4 d-flex gap-2 align-items-center">
+          <h6 class="m-0">關注 WOWOROOM</h6>
+          <ul class="d-flex justify-content-center align-items-center gap-2 social-list">
+            <li class="social-item">FB ICON</li>
+            <li class="social-item">IG ICON</li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h6 class="m-0">臺灣製造 Made In Taiwan</h6>
+        </div>
+        <div class="col-4">
+          <h6 class="m-0">Copyright © 2021 WOWOROOM. All rights reserved.</h6>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="./swiper.js"></script>
 
 </html>

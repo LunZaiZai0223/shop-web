@@ -1,3 +1,35 @@
+/* fallback */
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v118/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format("woff2");
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  -webkit-font-feature-settings: "liga";
+          font-feature-settings: "liga";
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -62,6 +94,15 @@ body {
   background-color: #000000;
 }
 
+.banner-text-wrapper {
+  position: absolute;
+  bottom: 5rem;
+  right: 5rem;
+  color: #ffff;
+  z-index: 2;
+  font-weight: 600;
+}
+
 .advantage-list {
   list-style-type: none;
   padding: 0;
@@ -92,5 +133,120 @@ body {
 .compare-table td {
   text-align: center;
   padding: 15px 0;
+}
+
+.how {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.how-list {
+  list-style-type: none;
+}
+
+.how-item {
+  position: relative;
+}
+
+.how-item:not(:last-child):after {
+  content: "";
+  position: absolute;
+  border: 10px solid #000000;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  top: 30%;
+  right: -80%;
+}
+
+.how-card {
+  width: 115px;
+  height: 115px;
+  border: 4px solid #000000;
+  border-radius: 50%;
+}
+
+.how-card span {
+  font-size: 50px;
+}
+
+.product-list {
+  list-style-type: none;
+}
+
+.product-item {
+  position: relative;
+}
+
+.product-item-add-btn {
+  display: block;
+  background-color: #000000;
+  color: #ffff;
+  padding: 1rem 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.product-item-content {
+  min-height: 150px;
+}
+
+.product-label {
+  position: absolute;
+  background-color: #000000;
+  color: #ffff;
+  padding: 0.5rem 3rem;
+  top: 3%;
+  right: 0;
+}
+
+.product img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+footer {
+  background-color: #6a33f8;
+}
+
+.footer-list {
+  padding: 0;
+  margin: 0;
+}
+
+.footer-item {
+  list-style-type: none;
+}
+
+.footer-item a {
+  text-decoration: none;
+}
+
+.footer .social-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.swiper {
+  width: 100%;
+  height: 400px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.swiper img {
+  max-width: 100%;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 /*# sourceMappingURL=style.css.map */

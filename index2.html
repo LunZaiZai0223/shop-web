@@ -12,6 +12,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="./style/style.css">
   <title>WOWOROOM</title>
 </head>
@@ -22,6 +25,7 @@
       <h1 class="navbar-brand">
         <a href="#">WOWOROOM</a>
       </h1>
+      <span class="navbar-hamburger-btn" tabindex="0"></span>
       <ul class="navbar-list">
         <li class="navbar-item">
           <a href="">床墊優勢</a>
@@ -34,12 +38,28 @@
           <a href="">產品列表</a>
         </li>
         <li class="navbar-item">
-          <a href="">購物車</a>
+          <a href="#cartInfo">購物車</a>
         </li>
+        <button class="close-navbar-list-btn">
+          <span class="material-icons">
+            clear
+          </span>
+        </button>
       </ul>
     </nav>
   </header>
-  <div class="header-underline"></div>
+  <div class="header-underline d-md-block d-none"></div>
+
+  <!-- alert-msg -->
+  <div class="alert-card-wrapper" data-alert-card>
+    <div class="alert-card-content">
+      <span class="alert-icon" data-alert-icon><i class="fas fa-check-circle"></i></span>
+      <span class="alert-text" data-alert-card-text></span>
+    </div>
+    <div class="alert-card-button">
+      <span class="fas fa-times"></span>
+    </div>
+  </div>
 
   <!-- 需要用 hash 決定 display -->
   <section class="my-md-5 banner" data-banner>
@@ -53,7 +73,7 @@
         </div>
         <div class="swiper-slide"
           style="background-image: url('https://images.unsplash.com/photo-1487300001871-12053913095d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
-          ></div>
+        </div>
         <div class="swiper-slide"
           style="background-image: url('https://images.unsplash.com/photo-1493548578639-b0c241186eb0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
         </div>
@@ -400,9 +420,9 @@
   <footer class="footer">
     <div class="container-xl py-md-3">
       <div class="d-flex align-items-center justify-content-between">
-        <div class="footer-logo">
-          LOGO
-        </div>
+        <h4 class="m-0 footer-logo">
+          WOWOROOM
+        </h4>
         <ul class="d-flex footer-list">
           <li class="px-3 footer-item">
             <a href="">關於我們</a>
@@ -417,18 +437,18 @@
           </li>
         </ul>
       </div>
-      <div class="row align-items-center mt-md-5">
-        <div class="col-4 d-flex gap-2 align-items-center">
+      <div class="row align-items-center mt-3 mt-md-5">
+        <div class="col-md-4 d-flex gap-2 align-items-center">
           <h6 class="m-0">關注 WOWOROOM</h6>
           <ul class="d-flex justify-content-center align-items-center gap-2 social-list">
-            <li class="social-item">FB ICON</li>
-            <li class="social-item">IG ICON</li>
+            <li class="social-item"><i class="fab fa-facebook-square"></i></li>
+            <li class="social-item"><i class="fab fa-instagram"></i></li>
           </ul>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <h6 class="m-0">臺灣製造 Made In Taiwan</h6>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
           <h6 class="m-0">Copyright © 2021 WOWOROOM. All rights reserved.</h6>
         </div>
       </div>

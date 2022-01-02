@@ -4,12 +4,6 @@ export function getAllProductsData () {
   // displayLoading();
   const url = 'https://livejs-api.hexschool.io/api/livejs/v1/customer/lunnnnnnn/products';
 
-  // return axios.get(url).then((response) => {
-  // const { products } = response.data;
-
-  // return products;
-  // });
-
   return axios.get(url).then(getProducts);
 }
 
@@ -21,16 +15,25 @@ function getProducts (promise) {
 export function getCartProductsData () {
   const ulr = 'https://livejs-api.hexschool.io/api/livejs/v1/customer/lunnnnnnn/carts';
 
-  return axios.get(ulr).then((response) => {
-    const { carts } = response.data;
-    const { finalTotal } = response.data;
-    const cartData = {
-      carts,
-      finalTotal
-    };
+  // return axios.get(ulr).then((response) => {
+  // const { carts } = response.data;
+  // const { finalTotal } = response.data;
+  // const cartData = {
+  // carts,
+  // finalTotal
+  // };
+  return axios.get(ulr).then(getCartProductData);
+}
 
-    return cartData;
-  });
+function getCartProductData (promise) {
+  const { carts } = promise.data;
+  const { finalTotal } = promise.data;
+  const cartData = {
+    carts,
+    finalTotal
+  };
+
+  return cartData;
 }
 
 export function deleteAllCartProducts () {
@@ -49,6 +52,7 @@ export function deleteAllCartProducts () {
 }
 
 export function addProductsIntoCart (productId) {
+  console.log('hi add product into cart');
   const url = 'https://livejs-api.hexschool.io/api/livejs/v1/customer/lunnnnnnn/carts';
   const config = {
     data: {
@@ -56,8 +60,6 @@ export function addProductsIntoCart (productId) {
       quantity: 1
     }
   };
-
-  // 可能可以在發出請求前至取得之前設定 loading 的東西
   axios.post(url, config);
 }
 

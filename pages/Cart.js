@@ -1,13 +1,57 @@
+// import api
+import { getCartProductsData } from '../api/apiHelper.js';
+// import components
 import CartNoProduct from "../components/CartNoProduct.js";
 
+let cartDataLocally = [];
+
+const createCartItem = ({ carts }) => {
+  let item = '';
+  carts.forEach((data) => {
+    const { id, quantity, product } = data;
+    const { images, price, title } = product;
+    item += (`
+      <tr>
+        <td>
+          <div class="cart-title">
+            <img src="${images}" alt="product image">
+            <h3>${title}</h3>
+          </div>
+        </td>
+        <td>
+          NT$${price}
+        </td>
+        <td>
+          <div class="cart-qty">
+            <input type="number" min="0" value="1">
+          </div>
+        </td>
+        <td>
+          NT$${price * quantity}
+        </td>
+        <td>
+          <span class="material-icons cart-delete-btn" data-cart-id="${id}">
+            clear
+          </span>
+        </td>
+      </tr>
+    `);
+  });
+
+  return item;
+};
+
+const totalPrice = ({ finalTotal }) => {
+  return finalTotal;
+};
 
 // 如果有商品才會 render 購物車
-const Cart = () => {
+const Cart = {
   render: () => {
     const item = (`
   <section class="container-xl cart">
     <h3 class="title">我的購物車</h3>
-    ${CartNoProduct()}
+    ${cartDataLocally.carts.length === 0 ? CartNoProduct() : (() => '<div></div>')()}
     <div class="table-wrapper">
       <table class="cart-table">
         <thead class="cart-head">
@@ -20,59 +64,15 @@ const Cart = () => {
           </tr>
         </thead>
         <tbody class="cart-body">
-          <tr>
-            <td>
-              <div class="cart-title">
-                <img
-                  src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
-                  alt="product image">
-                <h3>Jordan 雙人床架 / 雙人加大</h3>
-              </div>
-            </td>
-            <td>NT$9,000</td>
-            <td>
-              <div class="cart-qty">
-                <input type="number" min="0" value="1">
-                <!-- <span>+</span> -->
-                <!-- <span>1</span> -->
-                <!-- <span>-</span> -->
-              </div>
-            </td>
-            <td>NT$9,000</td>
-            <td><span>刪除</span></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="cart-title">
-                <img
-                  src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
-                  alt="product image">
-                <h3>Jordan 雙人床架 / 雙人加大</h3>
-              </div>
-            </td>
-            <td>NT$9,000</td>
-            <td>
-              <div class="cart-qty">
-                <input type="number" min="0" value="1">
-                <!-- <span>+</span> -->
-                <!-- <span>1</span> -->
-                <!-- <span>-</span> -->
-              </div>
-            </td>
-            <td>NT$9,000</td>
-            <td>
-              <span class="material-icons cart-delete-btn">
-                clear
-              </span>
-            </td>
-          </tr>
+
+        ${createCartItem(cartDataLocally)}
+
           <tr>
             <td>
             </td>
             <td></td>
             <td></td>
-            <td></td>
-            <td>
+            <td colspan="2" style="text-align: end">
               <a class="cart-delete-all-products-btn" href="">
                 刪除全部商品
               </a>
@@ -80,6 +80,7 @@ const Cart = () => {
           </tr>
         </tbody>
       </table>
+
     </div>
     <div class="row my-md-3 g-0 justify-content-md-between">
       <div class="col-md-5">
@@ -118,8 +119,10 @@ const Cart = () => {
             <tbody>
               <tr>
                 <th class="total-table-price">總計</th>
-                <th class="total-table-price">NT$9.0000
+
+                <th class="total-table-price">NT$${totalPrice(cartDataLocally)}
                 </th>
+
               </tr>
               <tr>
                 <th>運送方式</th>
@@ -134,11 +137,16 @@ const Cart = () => {
     `);
 
     return item;
-  };
+  },
 
   // after_render: () => {
 
   // };
+  updateCartDataLocally: async () => {
+    cartDataLocally = await getCartProductsData();
+    console.log(cartDataLocally);
+  }
 };
+
 
 export default Cart;

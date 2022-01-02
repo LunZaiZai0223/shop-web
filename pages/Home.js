@@ -1,8 +1,8 @@
 // import api
-import { getAllProductsData } from '../api/apiHelper.js';
+import { getAllProductsData, addProductsIntoCart } from '../api/apiHelper.js';
 
 // import utils
-import { getSelectOptions, render } from '../utils.js';
+import { getSelectOptions, render, showAddingProductAlert } from '../utils.js';
 
 // import components 
 // import Banner from '../components/Banner.js';
@@ -42,8 +42,41 @@ const handleChange = (event) => {
 // 1. go to product page 
 // 2. add products into cart
 const handleClick = (event) => {
-  console.log(event.target);
+  event.preventDefault();
+  const productTypeAndId = getProductIdAndType(event.target);
+  addingProductIntoCart(productTypeAndId);
 };
+
+const getProductIdAndType = (target) => {
+  const result = {
+    type: '',
+    productId: ''
+  };
+
+  if (target.dataset.productIdAdd) {
+    result.type = 'add';
+    result.productId = target.dataset.productIdAdd;
+  } else if (target.dataset.productIdShow) {
+    result.type = 'show';
+    result.productId = target.dataset.productIdShow;
+  }
+
+  return result;
+};
+
+/**
+ * 
+ * @param {Object}
+ * 1. 確定是加入購物車按鈕被按下才會加入購物車
+ * 2. 顯示提示 
+ */
+const addingProductIntoCart = ({ type, productId }) => {
+  type === 'add' && ((productId) => {
+    addProductsIntoCart(productId);
+    showAddingProductAlert();
+  })(productId);
+};
+
 // note book last page!
 
 
@@ -72,8 +105,10 @@ const createProductItemEle = (filterResult) => {
         <h5 class="product-label">${result.category}</h5>
         <img
           src="${result.images}"
-          alt="product image">
-        <a class="product-item-add-btn" href="" data-product-id="${result.id}">加入購物車</a>
+          alt="product image"
+          data-product-id-show="${result.id}"
+        >
+        <a class="product-item-add-btn" href="" data-product-id-add="${result.id}">加入購物車</a>
         <div class="d-flex justify-content-between my-3 flex-column product-item-content">
           <h3>${result.title}</h3>
           <div>

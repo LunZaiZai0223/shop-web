@@ -5,7 +5,7 @@ const CartNoProduct = () => {
         <span class="material-icons">
           sell
         </span>
-        您的購物車目前沒有商品
+        購物車內目前沒有商品
       </h4>
     </div>
   `);

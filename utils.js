@@ -20,33 +20,33 @@ export function getSelectOptions (allProducts) {
 }
 
 // export function displayLoading () {
-  // console.log('loading 開始');
-  // document.querySelector('[data-loading]').classList.add('is-active');
-  // document.querySelector('[data-overlay]').classList.add('is-active');
+// console.log('loading 開始');
+// document.querySelector('[data-loading]').classList.add('is-active');
+// document.querySelector('[data-overlay]').classList.add('is-active');
 // }
 
 // export function hideLoading () {
-  // console.log('結束 loading');
-  // document.querySelector('[data-loading]').classList.remove('is-active');
-  // document.querySelector('[data-overlay]').classList.remove('is-active');
+// console.log('結束 loading');
+// document.querySelector('[data-loading]').classList.remove('is-active');
+// document.querySelector('[data-overlay]').classList.remove('is-active');
 // }
 
-// export function showAddingProductAlert () {
-  // document.querySelector('[data-alert-card-text]').textContent = '商品已成功加入購物車';
-  // document.querySelector('[data-alert-icon]').innerHTML = '<i class="fas fa-check-circle"></i>';
-  // document.querySelector('[data-alert-card]').classList.remove('hide-alert');
-  // document.querySelector('[data-alert-card]').classList.remove('alert-danger');
-  // document.querySelector('[data-alert-card]').classList.add('alert-success');
-  // document.querySelector('[data-alert-card]').classList.add('show-alert');
+export function showAddingProductAlert () {
+  document.querySelector('[data-alert-card-text]').textContent = '商品已成功加入購物車';
+  document.querySelector('[data-alert-icon]').innerHTML = '<i class="fas fa-check-circle"></i>';
+  document.querySelector('[data-alert-card]').classList.remove('hide-alert');
+  document.querySelector('[data-alert-card]').classList.remove('alert-danger');
+  document.querySelector('[data-alert-card]').classList.add('alert-success');
+  document.querySelector('[data-alert-card]').classList.add('show-alert');
 
-  // // 兩秒後自動刪除 Alert
-  // setTimeout(() => { hideAddingProductAlert(); }, 2000);
-// }
+  // 兩秒後自動刪除 Alert
+  setTimeout(() => { hideAddingProductAlert(); }, 2000);
+}
 
-// export function hideAddingProductAlert () {
-  // document.querySelector('[data-alert-card]').classList.remove('show-alert');
-  // document.querySelector('[data-alert-card]').classList.add('hide-alert');
-// }
+export function hideAddingProductAlert () {
+  document.querySelector('[data-alert-card]').classList.remove('show-alert');
+  document.querySelector('[data-alert-card]').classList.add('hide-alert');
+}
 
 // export function showDeletingProductAlert () {
   // document.querySelector('[data-alert-card-text]').textContent = '購物車商品已被移除';

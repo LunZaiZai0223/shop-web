@@ -15,13 +15,6 @@ function getProducts (promise) {
 export function getCartProductsData () {
   const ulr = 'https://livejs-api.hexschool.io/api/livejs/v1/customer/lunnnnnnn/carts';
 
-  // return axios.get(ulr).then((response) => {
-  // const { carts } = response.data;
-  // const { finalTotal } = response.data;
-  // const cartData = {
-  // carts,
-  // finalTotal
-  // };
   return axios.get(ulr).then(getCartProductData);
 }
 
@@ -63,24 +56,22 @@ export function addProductsIntoCart (productId) {
   axios.post(url, config);
 }
 
-export function changeProductsQuantity (cartId, quantity) {
+export function changeProductsQuantity (data) {
   const url = 'https://livejs-api.hexschool.io/api/livejs/v1/customer/lunnnnnnn/carts';
-  const config = {
-    data: {
-      id: cartId,
-      quantity
-    }
-  };
+  const config = { data };
+  console.log(config);
 
-  return axios.patch(url, config).then((response) => {
-    const { carts, finalTotal } = response.data;
-    const cartData = {
-      carts,
-      finalTotal
-    };
+  // return axios.patch(url, config).then((response) => {
+  // const { carts, finalTotal } = response.data;
+  // const cartData = {
+  // carts,
+  // finalTotal
+  // };
 
-    return cartData;
-  });
+  // return cartData;
+  // });
+
+  return axios.patch(url, config).then(getCartProductData);
 }
 
 export function deleteOneProduct (cartId) {

@@ -1,7 +1,11 @@
 // import api
-import { getCartProductsData } from '../api/apiHelper.js';
+import { getCartProductsData, changeProductsQuantity, deleteOneProduct } from '../api/apiHelper.js';
 // import components
 import CartNoProduct from "../components/CartNoProduct.js";
+import CartForm from '../components/CartForm.js';
+
+//import utils
+import { render } from '../utils.js';
 
 let cartDataLocally = [];
 
@@ -23,14 +27,14 @@ const createCartItem = ({ carts }) => {
         </td>
         <td>
           <div class="cart-qty">
-            <input type="number" min="0" value="1">
+            <input type="number" min="0" value="${quantity}" data-cart-qty data-cart-id="${id}">
           </div>
         </td>
         <td>
           NT$${price * quantity}
         </td>
         <td>
-          <span class="material-icons cart-delete-btn" data-cart-id="${id}">
+          <span style="cursor: pointer" class="material-icons cart-delete-btn" data-delete-single-product-btn data-cart-id="${id}">
             clear
           </span>
         </td>
@@ -45,14 +49,57 @@ const totalPrice = ({ finalTotal }) => {
   return finalTotal;
 };
 
+// input change event => render 完都要重新拔掉 + 新增
+const addChangeCartQtyEvent = () => {
+  const qtyInputs = document.querySelectorAll('[data-cart-qty]');
+  if (qtyInputs.length !== 0) {
+    qtyInputs.forEach((input) => {
+      input.addEventListener('change', async (event) => {
+        const id = event.target.dataset.cartId;
+        const quantity = Number(event.target.value);
+        const data = {
+          id,
+          quantity
+        };
+        console.log(await changeProductsQuantity(data));
+        await Cart.updateCartDataLocally();
+        render(document.querySelector('#root'), Cart.render());
+        Cart.after_render();
+      });
+    });
+  }
+};
+
+const addDeleSingleProductEvent = () => {
+  const deleteSingleProductBtns = document.querySelectorAll('[data-delete-single-product-btn]');
+  if (deleteSingleProductBtns.length !== 0) {
+    deleteSingleProductBtns.forEach((btn) => {
+      btn.addEventListener('click', async (event) => {
+        console.log(event.target.dataset);
+        const { cartId } = event.target.dataset;
+        console.log(cartId);
+        await deleteOneProduct(cartId);
+        await Cart.updateCartDataLocally();
+        render(document.querySelector('#root'), Cart.render());
+        console.log(cartDataLocally);
+        Cart.after_render();
+      });
+    });
+  }
+};
+
+
 // 如果有商品才會 render 購物車
 const Cart = {
   render: () => {
     const item = (`
-  <section class="container-xl cart">
+  <section class="container-xl cart my-5">
     <h3 class="title">我的購物車</h3>
+
     ${cartDataLocally.carts.length === 0 ? CartNoProduct() : (() => '<div></div>')()}
-    <div class="table-wrapper">
+
+    ${cartDataLocally.carts.length === 0 ? '<div></div>' : (`
+    <div class="table-wrapper" style="display: ${cartDataLocally.carts.length === 0 ? 'none' : 'block'}">
       <table class="cart-table">
         <thead class="cart-head">
           <tr>
@@ -80,13 +127,15 @@ const Cart = {
           </tr>
         </tbody>
       </table>
-
     </div>
-    <div class="row my-md-3 g-0 justify-content-md-between">
+    `)}
+
+    ${cartDataLocally.carts.length === 0 ? '<div></div>' : (`
+    <div class="row my-5 my-md-3 g-0 justify-content-md-between">
       <div class="col-md-5">
         <h5 style="padding-left: 12px">猜您可能也喜歡</h5>
         <ul class="row guess-list">
-          <li class="col-md-4 guess-list-item">
+          <li class="mb-3 mb-md-0 col-md-4 guess-list-item">
             <img
               src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
               alt="product img">
@@ -94,7 +143,7 @@ const Cart = {
             <p class="mb-2">Jordan 雙人床架 / 雙人加大</p>
             <p class="m-0">NT$9000</p>
           </li>
-          <li class="col-md-4 guess-list-item">
+          <li class="mb-3 mb-md-0 col-md-4 guess-list-item">
             <img
               src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
               alt="product img">
@@ -102,7 +151,7 @@ const Cart = {
             <p class="mb-2">Jordan 雙人床架 / 雙人加大</p>
             <p class="m-0">NT$9000</p>
           </li>
-          <li class="col-md-4 guess-list-item">
+          <li class="mb-3 mb-md-0 col-md-4 guess-list-item">
             <img
               src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png"
               alt="product img">
@@ -133,15 +182,22 @@ const Cart = {
         </div>
       </div>
     </div>
+    `)}
+
   </section>
+
+  ${cartDataLocally.carts.length === 0 ? '<div></div>' : CartForm()}
+
     `);
 
     return item;
   },
 
-  // after_render: () => {
+  after_render: () => {
+    addChangeCartQtyEvent();
+    addDeleSingleProductEvent();
 
-  // };
+  },
   updateCartDataLocally: async () => {
     cartDataLocally = await getCartProductsData();
     console.log(cartDataLocally);

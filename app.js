@@ -29,6 +29,7 @@ const changePage = async (route) => {
   if (route === 'cartInfo') {
     await Cart.updateCartDataLocally();
     render(rootEle, Cart.render());
+    Cart.after_render();
   }
   console.log('end change page');
 
@@ -36,7 +37,7 @@ const changePage = async (route) => {
 
 window.addEventListener('hashchange', () => {
   console.log('hash changed');
-  console.log('current hast:', routes[location.hash]);
+  console.log('current hast:', routeState.getRoutes(location.hash));
 });
 
 // 只要有重新載入就會觸發 load event 
@@ -44,8 +45,9 @@ window.addEventListener('hashchange', () => {
 window.addEventListener('load', async () => {
   console.log('start load event');
   // 測試先用購物車
-  const currentHash = '#cartInfo' || null;
+  const currentHash = location.hash || null;
   const route = routeState.getRoutes(currentHash);
+  console.log(route);
   changePage(route);
   // const a = await getAllProductsData();
   // console.log(a);

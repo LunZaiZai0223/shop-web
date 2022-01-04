@@ -27,6 +27,7 @@ const routeState = (() => {
 const changePage = async (route) => {
   console.log('start change page');
   if (route === 'cartInfo') {
+    console.log('render cart');
     await Cart.updateCartDataLocally();
     render(rootEle, Cart.render());
     Cart.after_render();

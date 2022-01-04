@@ -1,5 +1,5 @@
 // import api
-import { getCartProductsData, changeProductsQuantity, deleteOneProduct } from '../api/apiHelper.js';
+import { getCartProductsData, changeProductsQuantity, deleteOneProduct, deleteAllCartProducts, fetchOneProductData } from '../api/apiHelper.js';
 // import components
 import CartNoProduct from "../components/CartNoProduct.js";
 import CartForm from '../components/CartForm.js';
@@ -18,7 +18,7 @@ const createCartItem = ({ carts }) => {
       <tr>
         <td>
           <div class="cart-title">
-            <img src="${images}" alt="product image">
+            <img src="${images}" alt="product image" data-product-id="${product.id}">
             <h3>${title}</h3>
           </div>
         </td>
@@ -55,19 +55,36 @@ const addChangeCartQtyEvent = () => {
   if (qtyInputs.length !== 0) {
     qtyInputs.forEach((input) => {
       input.addEventListener('change', async (event) => {
+        console.log(event.target);
+        const isProductQtyUnderZero = checkProductQty(event.target);
         const id = event.target.dataset.cartId;
-        const quantity = Number(event.target.value);
-        const data = {
-          id,
-          quantity
-        };
-        console.log(await changeProductsQuantity(data));
+        console.log(isProductQtyUnderZero);
+        if (isProductQtyUnderZero) {
+          await deleteOneProduct(id);
+        } else {
+          const quantity = Number(event.target.value);
+          const data = {
+            id,
+            quantity
+          };
+          console.log(await changeProductsQuantity(data));
+        }
         await Cart.updateCartDataLocally();
         render(document.querySelector('#root'), Cart.render());
         Cart.after_render();
       });
     });
   }
+};
+
+const checkProductQty = (target) => {
+  console.log(target);
+  let productShouldBeDeleted = false;
+  if (target.value <= 0) {
+    productShouldBeDeleted = true;
+  }
+
+  return productShouldBeDeleted;
 };
 
 const addDeleSingleProductEvent = () => {
@@ -88,6 +105,32 @@ const addDeleSingleProductEvent = () => {
   }
 };
 
+const addDeleteAllProductsEvent = () => {
+  const deleteAllProductsBtn = document.querySelector('[data-delete-all-product-btn]');
+  if (deleteAllProductsBtn) {
+    deleteAllProductsBtn.addEventListener('click', async (event) => {
+      event.preventDefault();
+      console.log('click delete all');
+      await deleteAllCartProducts();
+      await Cart.updateCartDataLocally();
+      render(document.querySelector('#root'), Cart.render());
+      Cart.after_render();
+    });
+  }
+};
+
+const addGoToProductPageEvent = () => {
+  const table = document.querySelector('[data-cart-table]');
+  console.log(table);
+  if (table) {
+    table.addEventListener('click', async (event) => {
+      console.log(event.target);
+      console.log(event.target.dataset);
+      const singleProductData = await fetchOneProductData(event.target.dataset.productId);
+      console.log(singleProductData);
+    });
+  }
+};
 
 // 如果有商品才會 render 購物車
 const Cart = {
@@ -100,7 +143,7 @@ const Cart = {
 
     ${cartDataLocally.carts.length === 0 ? '<div></div>' : (`
     <div class="table-wrapper" style="display: ${cartDataLocally.carts.length === 0 ? 'none' : 'block'}">
-      <table class="cart-table">
+      <table class="cart-table" data-cart-table>
         <thead class="cart-head">
           <tr>
             <th>品項</th>
@@ -120,7 +163,7 @@ const Cart = {
             <td></td>
             <td></td>
             <td colspan="2" style="text-align: end">
-              <a class="cart-delete-all-products-btn" href="">
+              <a class="cart-delete-all-products-btn" href="" data-delete-all-product-btn>
                 刪除全部商品
               </a>
             </td>
@@ -196,6 +239,8 @@ const Cart = {
   after_render: () => {
     addChangeCartQtyEvent();
     addDeleSingleProductEvent();
+    addDeleteAllProductsEvent();
+    addGoToProductPageEvent();
 
   },
   updateCartDataLocally: async () => {

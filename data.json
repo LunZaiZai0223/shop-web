@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "title": "Jordan 雙人床架／雙人加大",
+      "category": "床架",
+      "price": 9000,
+      "images": "https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Zr4h1Oqvc6NtAnpe5pNqJfGYyBJshAlKctfv0BTAZBqVAuvfSAWk4bcidBd8qBu1lRn5TWvib6O3UbmIAEt5w8SdB94GuFplZn6IM4SBvtxWJA2VnOqvQOsKungCPDXv.png",
+      "description": "喬丹6尺雙人加大床頭片",
+      "id": "HlMgPLGr0aAitS6xFafR",
+      "origin_price": 12000
+    },
+    {
+      "id": "IlfApDFrDf20CtDriC3Y",
+      "description": "法式古典Louvre雙人床架，經典百年手工浮雕工藝，床架宮廷式紡錘腳，與法式鄉村家具手工刷舊工藝，展現仿舊典雅質感～且床腳筆直設計，床架寬敞床底可收納儲物，雙人床架推薦給打造法式古典宮廷風寢室的你，同款式另有雙人標準床架(5x6.2)尺寸。",
+      "title": "Louvre 雙人床架／雙人加大",
+      "price": 18000,
+      "origin_price": 22000,
+      "category": "床架",
+      "images": "https://hexschool-api.s3.us-west-2.amazonaws.com/custom/B87OUPkvlBvBl7Wyv3xj9ErOazczyGO8AFM5Nll38yEUvXMJHFXnid4g9YMzJOMq6t54ucmfgO4p7xw1azkleNYyhkEIINs8zJNbCPz1JUAZwaTKqIkaVQ3mRo2VBzAH.png"
+    },
+    {
+      "title": "Charles 雙人床架",
+      "description": "Charles 雙人床架有著多種異材組合，北美黃楊木打造的床架，仿真皮革的床頭靠枕再加上烤漆金屬的床腳，體現實木床架Mid-Century Modern(世紀中期現代風)美學；且床腳筆直設計，床底寬敞空間考量現代人收納儲物需求，推薦給尋覓復古風雙人床架的你，同款式另有雙人標準床架(5*6.2)尺寸。",
+      "price": 15000,
+      "images": "https://hexschool-api.s3.us-west-2.amazonaws.com/custom/tTQQggBAfhl0vEeM7WmTwij1JbAwC7MBD2TSyjHbZHvBjnLU5tOtoGszOmODOEu6DRjzdjIpcEzeCCkmRWaL8JDJwaaWglER7P3V4JXKT7FT5gm0UL45CaHpSVlEXbKK.png",
+      "category": "床架",
+      "origin_price": 17000,
+      "id": "K5GXdzZ9Ml3p2EVYBzJw"
+    },
+    {
+      "origin_price": 5780,
+      "description": "法式古典Louvre單人床架，經典百年手工浮雕工藝，床架宮廷式紡錘腳，與法式鄉村家具手工刷舊工藝，展現仿舊典雅質感～且床腳筆直設計，床架寬敞床底可收納儲物。",
+      "price": 3780,
+      "category": "床架",
+      "images": "https://hexschool-api.s3.us-west-2.amazonaws.com/custom/dp6gW6u5hkUxxCuNi8RjbfgufygamNzdVHWb15lHZTxqZQs0gdDunQBS7F6M3MdegcQmKfLLoxHGgV3kYunUF37DNn6coPH6NqzZwRfhbsmEblpJQLqXLg4yCqUwP3IE.png",
+      "id": "OpzexlWQCZCFvkJ7Jowq",
+      "title": "Louvre 單人床架"
+    },
+    {
+      "description": "安東尼可調高度床邊桌。",
+      "category": "收納",
+      "images": "https://hexschool-api.s3.us-west-2.amazonaws.com/custom/XWnC8Of71WeSvCbkGy5MvZSyCrim50F9njuwHypcbiimd8tWscxGdecRAyaNheboQkqQAiCWK12GwuwMBvEtAarU2Y7mKTwKZIqhIExyQzbAbls7NTOdN2vX1OAyEaAN.png",
+      "price": 1890,
+      "title": "Antony 床邊桌",
+      "id": "YC36QvTxBPP1YqiZ3xKi",
+      "origin_price": 3200
+    },
+    {
+      "title": "Antony 遮光窗簾",
+      "price": 1200,
+      "id": "ijeeShv2kc7U5GRVGmtV",
+      "origin_price": 3980,
+      "category": "窗簾",
+      "images": "https://hexschool-api.s3.us-west-2.amazonaws.com/custom/xgI6wM3uUCpkEEcauvHs67BFjGqG6Qxa9JTfOZTys6C0yJjqw5c8nJuA31gX77YVf04kZotGP9ZFQU7hLXkuoaRwNSssScpFnzfyPzYKODuyhw2QJrT1bDSim7aOBryv.png",
+      "description": "Antony 遮光窗簾讓你享有尊貴感。"
+    },
+    {
+      "origin_price": 1200,
+      "images": "https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Tx99wDepg56aO5dGH7uGpU7REZwQLd1W0ec43M6cFw3o3z4eXTbeovq8WVseZ476BntlQnPPzaqkZgoj7xITviHMqf0kiAetjxyvuLiTmr7WdulcL364MTL321qZRJkP.png",
+      "id": "m8GdFCwaV5sABBfEQHPR",
+      "title": "Charles 系列儲物組合",
+      "description": "【Charles】 包含桌面化妝品收納盒儲物箱柜首飾盒子口紅梳妝臺置物架抽屜式化妝盒。",
+      "category": "收納",
+      "price": 780
+    },
+    {
+      "images": "https://hexschool-api.s3.us-west-2.amazonaws.com/custom/VYPOpg83Jg7Ft5raI0eyzs6xSz0ttKzSJSklFq7il0HdwJ1iQ9kLHAU19rmkSapmyzRErTm1sxWO725W7CnowkRjwxgSyyRBo1ihGLwNbfYtgbo2nCTY9sarjqoxQbYX.png",
+      "id": "sAeOCivCBZoSBDAuPfvV",
+      "price": 12000,
+      "description": "Antony 雙人床架加大選用北美黃楊木打造，木質堅韌且紋理細膩，胡桃木色手工塗裝持久不掉色，彎角導圓、造型簡約、黃銅妝點，體現床架 Mid-Century Modern (世紀中期現代風家具)美學，推薦給喜愛復古風雙人床架的你。同款式還有雙人床架(5*6.2)尺寸，適合寢室空間有限的你。",
+      "category": "床架",
+      "title": "Antony 雙人床架／雙人加大",
+      "origin_price": 18000
+    }
+  ]
+}

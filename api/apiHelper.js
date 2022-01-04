@@ -102,3 +102,11 @@ export function getCompletedOrderData (inputValue) {
     return cartData;
   });
 }
+
+export function fetchOneProductData (productId) {
+
+  return axios.get('../data.json').then((response) => {
+    const { products } = response.data;
+    return products.filter((product) => product["id"] === productId);
+  });
+}

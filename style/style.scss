@@ -627,6 +627,47 @@ footer {
   }
 }
 
+// single product page
+.single-product {
+  &-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+  &-text {
+    &-title {
+      font-size: 2rem;
+    }
+    &-original-price {
+      text-decoration: line-through;
+      font-size: 1rem;
+    }
+    &-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    &-add-btn {
+      display: block;
+      width: 100%;
+      min-height: 30px;
+      border: 1px solid red;
+      padding: 0.5rem 0;
+      text-align: center;
+      color: #ffff;
+      background-color: #000000;
+      font-size: 1rem;
+      font-weight: bold;
+      border: 0;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+      &:hover {
+        background-color: $color-purple;
+        color: #ffff;
+      }
+    }
+  }
+}
+
 // swiper
 
 .swiper {

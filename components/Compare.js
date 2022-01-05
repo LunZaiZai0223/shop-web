@@ -15,31 +15,46 @@ const Compare = () => {
         <tbody>
           <tr>
             <td>可單人自行組裝</td>
-            <td>V</td>
+            <td>
+              <span class="material-icons" style="color: #6a33ff; transform:scale(1.5)">done
+              </span>
+            </td>
             <td>不一定</td>
             <td>不一定</td>
           </tr>
           <tr>
             <td>可多次重複拆裝</td>
-            <td>V</td>
+            <td>
+              <span class="material-icons" style="color: #6a33ff; transform:scale(1.5)">done
+              </span>
+            </td>
             <td>不一定</td>
             <td>不一定</td>
           </tr>
           <tr>
             <td>床墊規格彈性大</td>
-            <td>V</td>
+            <td>
+              <span class="material-icons" style="color: #6a33ff; transform:scale(1.5)">done
+              </span>
+            </td>
             <td>不一定</td>
             <td>不一定</td>
           </tr>
           <tr>
             <td>材質可長久使用</td>
-            <td>V</td>
+            <td>
+              <span class="material-icons" style="color: #6a33ff; transform:scale(1.5)">done
+              </span>
+            </td>
             <td>不一定</td>
             <td>不一定</td>
           </tr>
           <tr>
             <td>小客車即可搬運</td>
-            <td>V</td>
+            <td>
+              <span class="material-icons" style="color: #6a33ff; transform:scale(1.5)">done
+              </span>
+            </td>
             <td>不一定</td>
             <td>不一定</td>
           </tr>

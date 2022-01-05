@@ -5,7 +5,7 @@ import CartNoProduct from "../components/CartNoProduct.js";
 import CartForm from '../components/CartForm.js';
 
 //import utils
-import { render } from '../utils.js';
+import { render, hideBanner } from '../utils.js';
 
 let cartDataLocally = [];
 
@@ -18,7 +18,7 @@ const createCartItem = ({ carts }) => {
       <tr>
         <td>
           <div class="cart-title">
-            <img src="${images}" alt="product image" data-product-id="${product.id}">
+            <img style="cursor: pointer" src="${images}" alt="product image" data-product-id="${product.id}">
             <h3>${title}</h3>
           </div>
         </td>
@@ -124,13 +124,17 @@ const addGoToProductPageEvent = () => {
   console.log(table);
   if (table) {
     table.addEventListener('click', async (event) => {
-      console.log(event.target);
-      console.log(event.target.dataset);
-      const singleProductData = await fetchOneProductData(event.target.dataset.productId);
-      console.log(singleProductData);
+      const { productId } = event.target.dataset;
+      if (productId) {
+        const singleProductData = await fetchOneProductData(productId);
+        console.log(singleProductData);
+        // hash change 
+        // 把資料傳出去，讓 product Page 可以拿到資料
+      }
     });
   }
 };
+
 
 // 如果有商品才會 render 購物車
 const Cart = {
@@ -241,7 +245,7 @@ const Cart = {
     addDeleSingleProductEvent();
     addDeleteAllProductsEvent();
     addGoToProductPageEvent();
-
+    hideBanner();
   },
   updateCartDataLocally: async () => {
     cartDataLocally = await getCartProductsData();

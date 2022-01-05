@@ -332,16 +332,31 @@ body {
     padding: 0.5rem 3rem;
     top: 3%;
     right: 0;
+    z-index: 2;
   }
   img {
     display: block;
     width: 100%;
     aspect-ratio: 1/1;
+    filter: brightness(1);
+    transition: filter 0.3s, transform 0.3s;
+    cursor: pointer;
     @include mobile {
       aspect-ratio: 4/3;
     }
   }
 }
+
+.product-image-wrapper {
+  overflow: hidden;
+  &:hover {
+    img {
+      filter: brightness(1.05);
+      transform: scale(1.05);
+    }
+  }
+}
+
 footer {
   background-color: whitesmoke;
   color: #000000;

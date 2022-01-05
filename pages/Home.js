@@ -1,8 +1,8 @@
 // import api
-import { getAllProductsData, addProductsIntoCart } from '../api/apiHelper.js';
+import { getAllProductsData, addProductsIntoCart, fetchOneProductData } from '../api/apiHelper.js';
 
 // import utils
-import { getSelectOptions, render, showAddingProductAlert } from '../utils.js';
+import { getSelectOptions, render, showAddingProductAlert, showBanner } from '../utils.js';
 
 // import components 
 // import Banner from '../components/Banner.js';
@@ -41,10 +41,14 @@ const handleChange = (event) => {
 
 // 1. go to product page 
 // 2. add products into cart
-const handleClick = (event) => {
+const handleClick = async (event) => {
   event.preventDefault();
   const productTypeAndId = getProductIdAndType(event.target);
+  console.log(productTypeAndId);
   addingProductIntoCart(productTypeAndId);
+  const productData = await getOneProductData(productTypeAndId);
+  console.log(productData);
+  addProductIdToHash(productData);
 };
 
 const getProductIdAndType = (target) => {
@@ -77,6 +81,27 @@ const addingProductIntoCart = ({ type, productId }) => {
   })(productId);
 };
 
+const getOneProductData = ({ type, productId }) => {
+  return type === 'show' && (async (productId) => {
+    const data = await fetchOneProductData(productId);
+    data[0].type = type;
+    return data;
+  })(productId);
+};
+
+const addProductIdToHash = (productData) => {
+  const { id, type } = productData[0];
+  // 更換 show 的 item
+  // 更換 hash 
+  // 在 hash event 寫 id 頁面的邏輯
+  // 更換 hash 後再靠 hash change render!
+  // const {type}
+  type === 'show' && ((id) => {
+    location.hash = `#${id}`;
+  })(id);
+
+};
+
 // note book last page!
 
 
@@ -103,11 +128,13 @@ const createProductItemEle = (filterResult) => {
     item += `
       <li class="col-md-3 col-sm-6 product-item">
         <h5 class="product-label">${result.category}</h5>
-        <img
-          src="${result.images}"
-          alt="product image"
-          data-product-id-show="${result.id}"
-        >
+        <div class="product-image-wrapper">
+          <img
+            src="${result.images}"
+            alt="product image"
+            data-product-id-show="${result.id}"
+          >
+        </div>
         <a class="product-item-add-btn" href="" data-product-id-add="${result.id}">加入購物車</a>
         <div class="d-flex justify-content-between my-3 flex-column product-item-content">
           <h3>${result.title}</h3>
@@ -158,6 +185,7 @@ const Home = {
     document.querySelector('[data-product-select]').addEventListener('change', handleChange);
     // product list click event
     document.querySelector('[data-product-list]').addEventListener('click', handleClick);
+    showBanner();
   }
 
 

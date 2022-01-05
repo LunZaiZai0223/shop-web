@@ -13,6 +13,19 @@ const rootEle = document.querySelector('#root');
 const routeState = (() => {
   const _routes = {
     '#cartInfo': 'cartInfo',
+    '#advantage': 'homePage',
+    '#recommendation': 'homePage',
+    '#productList': 'homePage',
+    '#logo': 'homePage',
+    '#purchaseWay': 'homePage',
+    '#HlMgPLGr0aAitS6xFafR': 'productInfo',
+    '#IlfApDFrDf20CtDriC3Y': 'productInfo',
+    '#K5GXdzZ9Ml3p2EVYBzJw': 'productInfo',
+    '#OpzexlWQCZCFvkJ7Jowq': 'productInfo',
+    '#YC36QvTxBPP1YqiZ3xKi': 'productInfo',
+    '#sAeOCivCBZoSBDAuPfvV': 'productInfo',
+    '#m8GdFCwaV5sABBfEQHPR': 'productInfo',
+    '#ijeeShv2kc7U5GRVGmtV': 'productInfo',
   };
 
   const getRoutes = (hash) => {
@@ -31,6 +44,10 @@ const changePage = async (route) => {
     await Cart.updateCartDataLocally();
     render(rootEle, Cart.render());
     Cart.after_render();
+  } else if (route === 'homePage') {
+    console.log('render to homepage');
+    render(rootEle, Home.render());
+    Home.after_render();
   }
   console.log('end change page');
 
@@ -39,12 +56,17 @@ const changePage = async (route) => {
 window.addEventListener('hashchange', () => {
   console.log('hash changed');
   console.log('current hast:', routeState.getRoutes(location.hash));
+  const currentHash = location.hash;
+  const currentPage = routeState.getRoutes(currentHash);
+  changePage(currentPage);
 });
 
 // 只要有重新載入就會觸發 load event 
 // => refresh / first visit
 window.addEventListener('load', async () => {
   console.log('start load event');
+  // 不管怎樣都先取得全部商品的資料
+  await Home.updateProductData();
   // 測試先用購物車
   const currentHash = location.hash || null;
   const route = routeState.getRoutes(currentHash);

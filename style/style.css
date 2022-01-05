@@ -377,18 +377,37 @@ body {
   padding: 0.5rem 3rem;
   top: 3%;
   right: 0;
+  z-index: 2;
 }
 
 .product img {
   display: block;
   width: 100%;
   aspect-ratio: 1/1;
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
+  -webkit-transition: -webkit-filter 0.3s, -webkit-transform 0.3s;
+  transition: -webkit-filter 0.3s, -webkit-transform 0.3s;
+  transition: filter 0.3s, transform 0.3s;
+  transition: filter 0.3s, transform 0.3s, -webkit-filter 0.3s, -webkit-transform 0.3s;
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {
   .product img {
     aspect-ratio: 4/3;
   }
+}
+
+.product-image-wrapper {
+  overflow: hidden;
+}
+
+.product-image-wrapper:hover img {
+  -webkit-filter: brightness(1.05);
+          filter: brightness(1.05);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 footer {

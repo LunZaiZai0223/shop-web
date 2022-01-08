@@ -371,6 +371,11 @@ footer {
     a {
       color: inherit;
       text-decoration: none;
+      transition: border-bottom 0.3s, color 0.3s;
+      &:hover {
+        border-bottom: 1px solid $color-purple;
+        color: $color-purple;
+      }
     }
   }
   .social-list {
@@ -499,6 +504,7 @@ footer {
       display: block;
       width: 100%;
       aspect-ratio: 1/1;
+      cursor: pointer;
       @include mobile {
         aspect-ratio: 4/3;
       }
@@ -514,6 +520,17 @@ footer {
       &:hover {
         background-color: $color-purple;
         color: #ffff;
+      }
+    }
+    &-body {
+      min-height: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }
@@ -683,6 +700,52 @@ footer {
   }
 }
 
+// about
+.about {
+  &-image {
+    width: 100%;
+    object-fit: cover;
+    height: 400px;
+  }
+  &-text-group {
+    line-height: 2;
+  }
+}
+
+// FAQ
+.FAQ {
+  &-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  .panel {
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    cursor: default;
+  }
+  &-item {
+    cursor: pointer;
+    .arrow {
+      transition: transform 0.3s cubic-bezier(0, 1, 0, 1);
+    }
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+    > p {
+      box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
+      color: #301e5f;
+    }
+    &_active {
+      .arrow {
+        transform: rotate(180deg);
+      }
+      .panel {
+        max-height: 99rem;
+        opacity: 1;
+      }
+    }
+  }
+}
 // swiper
 
 .swiper {

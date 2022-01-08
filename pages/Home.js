@@ -2,7 +2,7 @@
 import { getAllProductsData, addProductsIntoCart, fetchOneProductData } from '../api/apiHelper.js';
 
 // import utils
-import { getSelectOptions, render, showAddingProductAlert, showBanner } from '../utils.js';
+import { getSelectOptions, render, showAddingProductAlert, showBanner, getProductIdAndType, addingProductIntoCart, getOneProductData, addProductIdToHash } from '../utils.js';
 
 // import components 
 // import Banner from '../components/Banner.js';
@@ -50,61 +50,6 @@ const handleClick = async (event) => {
   console.log(productData);
   addProductIdToHash(productData);
 };
-
-const getProductIdAndType = (target) => {
-  const result = {
-    type: '',
-    productId: ''
-  };
-
-  if (target.dataset.productIdAdd) {
-    result.type = 'add';
-    result.productId = target.dataset.productIdAdd;
-  } else if (target.dataset.productIdShow) {
-    result.type = 'show';
-    result.productId = target.dataset.productIdShow;
-  }
-
-  return result;
-};
-
-/**
- * 
- * @param {Object}
- * 1. 確定是加入購物車按鈕被按下才會加入購物車
- * 2. 顯示提示 
- */
-const addingProductIntoCart = ({ type, productId }) => {
-  type === 'add' && ((productId) => {
-    addProductsIntoCart(productId);
-    showAddingProductAlert();
-  })(productId);
-};
-
-const getOneProductData = ({ type, productId }) => {
-  return type === 'show' && (async (productId) => {
-    const data = await fetchOneProductData(productId);
-    data[0].type = type;
-    return data;
-  })(productId);
-};
-
-const addProductIdToHash = (productData) => {
-  const { id, type } = productData[0];
-  // 更換 show 的 item
-  // 更換 hash 
-  // 在 hash event 寫 id 頁面的邏輯
-  // 更換 hash 後再靠 hash change render!
-  // const {type}
-  type === 'show' && ((id) => {
-    location.hash = `#${id}`;
-  })(id);
-
-};
-
-// note book last page!
-
-
 
 /**
  * 
@@ -175,7 +120,6 @@ const Home = {
     productData = await getAllProductsData();
   },
 
-  // for testing
   getProductData: () => {
     return productData;
   },

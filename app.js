@@ -1,12 +1,16 @@
 // import pages
 import Home from './pages/Home.js';
 import Cart from './pages/Cart.js';
+import Product from './pages/Product.js';
+import About from './pages/About.js';
+import FAQ from './pages/FAQ.js';
+import Guess from './components/Guess.js';
 
 // import api
-import { getAllProductsData } from './api/apiHelper.js';
+import { getAllProductsData, fetchOneProductData } from './api/apiHelper.js';
 
 // import utils
-import { render } from './utils.js';
+import { render, hideBanner } from './utils.js';
 
 const rootEle = document.querySelector('#root');
 
@@ -18,6 +22,8 @@ const routeState = (() => {
     '#productList': 'homePage',
     '#logo': 'homePage',
     '#purchaseWay': 'homePage',
+    '#AboutUs': 'aboutPage',
+    '#FAQ': 'faqPage',
     '#HlMgPLGr0aAitS6xFafR': 'productInfo',
     '#IlfApDFrDf20CtDriC3Y': 'productInfo',
     '#K5GXdzZ9Ml3p2EVYBzJw': 'productInfo',
@@ -41,6 +47,7 @@ const changePage = async (route) => {
   console.log('start change page');
   if (route === 'cartInfo') {
     console.log('render cart');
+    hideBanner();
     await Cart.updateCartDataLocally();
     render(rootEle, Cart.render());
     Cart.after_render();
@@ -48,6 +55,24 @@ const changePage = async (route) => {
     console.log('render to homepage');
     render(rootEle, Home.render());
     Home.after_render();
+  } else if (route === 'productInfo') {
+    console.log('productInfo');
+    hideBanner();
+    const currentHash = location.hash;
+    const productId = currentHash.slice(1);
+    const [productData] = await fetchOneProductData(productId);
+    render(rootEle, Product.render(productData));
+    Product.after_render();
+  } else if (route === 'aboutPage') {
+    console.log('render about page');
+    hideBanner();
+    render(rootEle, About.render());
+    About.after_render();
+  } else if (route === 'faqPage') {
+    console.log('render faq');
+    hideBanner();
+    render(rootEle, FAQ.render());
+    FAQ.after_render();
   }
   console.log('end change page');
 
@@ -71,6 +96,7 @@ window.addEventListener('load', async () => {
   const currentHash = location.hash || null;
   const route = routeState.getRoutes(currentHash);
   console.log(route);
+  Guess();
   changePage(route);
   // const a = await getAllProductsData();
   // console.log(a);
@@ -87,6 +113,6 @@ window.addEventListener('load', async () => {
 
 // const productSelectEle = document.querySelector('[data-product-select]');
 // productSelectEle.addEventListener('change', (event) => {
-  // const selectValue = event.target.value;
-  // console.log(selectValue);
+// const selectValue = event.target.value;
+// console.log(selectValue);
 // });

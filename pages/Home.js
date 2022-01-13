@@ -103,7 +103,7 @@ const Home = {
     ${Recommendation()}
     ${How()}
 
-    <section class="container-xl product">
+    <section class="container-xl product" id="productList">
       <select class="product-select" data-product-select>
       ${createSelectOptionEles(getSelectOptions(productData))}
       </select>

@@ -1,6 +1,6 @@
 const How = () => {
   return (`
-  <section class="my-md-5 my-3 how">
+  <section class="my-md-5 my-3 how" id="purchaseWay">
     <h3 class="title">購物方式</h3>
     <ul class="d-block d-md-flex align-items-cent justify-content-between how-list">
       <li class="d-flex flex-column align-items-center how-item">

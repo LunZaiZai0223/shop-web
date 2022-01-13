@@ -1,8 +1,8 @@
 // import api
-import { getCartProductsData, changeProductsQuantity, deleteOneProduct, deleteAllCartProducts, fetchOneProductData } from '../api/apiHelper.js';
+import { getCartProductsData, changeProductsQuantity, deleteOneProduct, deleteAllCartProducts, fetchOneProductData, getCompletedOrderData } from '../api/apiHelper.js';
 
 // import utils
-import { getProductIdAndType, addingProductIntoCart, getOneProductData, addProductIdToHash } from '../utils.js';
+import { getProductIdAndType, addingProductIntoCart, getOneProductData, addProductIdToHash, displayLoading, hideLoading, showDeletingProductAlert } from '../utils.js';
 
 // import components
 import CartNoProduct from "../components/CartNoProduct.js";
@@ -11,6 +11,9 @@ import Guess from '../components/Guess.js';
 
 //import utils
 import { render } from '../utils.js';
+
+// import page 
+import ThankyouPage from './Thankyou.js';
 
 let cartDataLocally = [];
 
@@ -66,21 +69,22 @@ const addChangeCartQtyEvent = () => {
   if (qtyInputs.length !== 0) {
     qtyInputs.forEach((input) => {
       input.addEventListener('change', async (event) => {
-        console.log(event.target);
+        displayLoading();
         const isProductQtyUnderZero = checkProductQty(event.target);
         const id = event.target.dataset.cartId;
-        console.log(isProductQtyUnderZero);
         if (isProductQtyUnderZero) {
           await deleteOneProduct(id);
+          showDeletingProductAlert();
         } else {
           const quantity = Number(event.target.value);
           const data = {
             id,
             quantity
           };
-          console.log(await changeProductsQuantity(data));
+          await changeProductsQuantity(data);
         }
         reRenderCartPage();
+        hideLoading();
       });
     });
   }
@@ -101,11 +105,12 @@ const addDeleSingleProductEvent = () => {
   if (deleteSingleProductBtns.length !== 0) {
     deleteSingleProductBtns.forEach((btn) => {
       btn.addEventListener('click', async (event) => {
-        console.log(event.target.dataset);
+        displayLoading();
         const { cartId } = event.target.dataset;
-        console.log(cartId);
         await deleteOneProduct(cartId);
         reRenderCartPage();
+        hideLoading();
+        showDeletingProductAlert();
       });
     });
   }
@@ -116,9 +121,11 @@ const addDeleteAllProductsEvent = () => {
   if (deleteAllProductsBtn) {
     deleteAllProductsBtn.addEventListener('click', async (event) => {
       event.preventDefault();
-      console.log('click delete all');
+      displayLoading();
       await deleteAllCartProducts();
       reRenderCartPage();
+      hideLoading();
+      showDeletingProductAlert();
     });
   }
 };
@@ -155,7 +162,103 @@ const addGuessClickEvent = () => {
     addProductIdToHash(productData);
   };
 
-  ele.addEventListener('click', handleClick);
+  if (ele) {
+    ele.addEventListener('click', handleClick);
+  }
+};
+
+const addCustomerInfoFormChangeEvent = () => {
+  const ele = document.querySelector('[data-customer-info-form]');
+
+  const handleChange = (event) => {
+    const target = event.target;
+    // checkInputFiled(target);
+    const inputEle = getInputEle(target);
+    checker(inputEle);
+  };
+
+  const getInputEle = (target) => {
+    return {
+      input: target,
+      inputValue: target.value,
+      errMsgEle: document.querySelector(`[data-message="${target.name}"`),
+      inputName: target.name,
+      state: false,
+      inputParent: target.parentElement
+    };
+  };
+
+  const checker = (input) => {
+    if (input.inputName === '姓名' || input.inputName === '寄送地址') {
+      checkNameAndAddressValue(input);
+      addValidationFeedbackNameAndAddress(input);
+    } else if (input.inputName === 'Email') {
+      checkEmailValue(input);
+      addValidationFeedbackEmail(input);
+    } else if (input.inputName === '電話') {
+      checkPhoneValue(input);
+      addValidationFeedbackPhone(input);
+    }
+
+    removeValidationFeedback(input);
+  };
+
+  const checkNameAndAddressValue = (input) => {
+    if (input.inputValue === '') {
+      input.state = false;
+    } else {
+      input.state = true;
+    }
+  };
+
+  const removeValidationFeedback = (input) => {
+    if (input.state) {
+      input.errMsgEle.style.display = 'none';
+    }
+  };
+
+  const addValidationFeedbackNameAndAddress = (input) => {
+    console.log(input);
+    if (!input.state) {
+      input.errMsgEle.style.display = 'block';
+      input.errMsgEle.textContent = `${input.inputName} 不可空白`;
+    }
+  };
+
+  const checkEmailValue = (input) => {
+    // ref. https://stackoverflow.com/questions/46155/whats-the-best-way-to-validate-an-email-address-in-javascript
+    const checker = /\S+@\S+\.\S+/;
+    const result = checker.test(input.inputValue);
+    if (result) {
+      input.state = true;
+    }
+  };
+
+  const addValidationFeedbackEmail = (input) => {
+    if (!input.state) {
+      input.errMsgEle.textContent = `${input.inputName} 格式錯誤`;
+      input.errMsgEle.style.display = 'block';
+    }
+  };
+
+  const checkPhoneValue = (input) => {
+    const checker = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    const result = checker.test(input.inputValue);
+    if (result) {
+      input.state = true;
+    }
+  };
+
+  const addValidationFeedbackPhone = (input) => {
+    if (!input.state) {
+      input.errMsgEle.textContent = `${input.inputName}格式錯誤，應為 09xxxxxxxx`;
+      input.errMsgEle.style.display = 'block';
+    }
+  };
+
+  if (ele) {
+    ele.addEventListener('change', handleChange);
+  }
 };
 
 const addCustomerInfoFormSubmitEvent = () => {
@@ -167,6 +270,9 @@ const addCustomerInfoFormSubmitEvent = () => {
   const emailInputEle = document.querySelector('input[name="Email"]');
   const addressInputEle = document.querySelector('input[name="寄送地址"]');
   const paymentSelectEle = document.querySelector('select[name="交易方式"]');
+
+  // error eles 
+  const [...errorMsgEles] = document.querySelectorAll('[data-message]');
 
   const getInputValue = (name, phone, email, address, payment) => {
     const obj = {
@@ -183,32 +289,38 @@ const addCustomerInfoFormSubmitEvent = () => {
 
     return obj;
   };
-  const handleSubmit = (event) => {
+
+  const getValueAreCorrect = (errorMsgEles) => {
+    const result = [];
+    errorMsgEles.forEach((errorMsgEle) => {
+      errorMsgEle.style.display === 'none' && result.push(true);
+    });
+
+    return result.length === 4;
+  };
+
+  const sendOrder = async (inputValue) => {
+    const data = await getCompletedOrderData(inputValue);
+    return data;
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('submit the form');
-    console.log(event.target);
-    const inputValue = getInputValue(nameInputEle, phoneInputEle, emailInputEle, addressInputEle, paymentSelectEle);
-    console.log(inputValue);
-  };
+    const allValueAreCorrect = getValueAreCorrect(errorMsgEles);
 
-  const handleChange = (event) => {
-    const target = event.target;
-    checkInputFiled(target);
-  };
-
-  const checkInputFiled = (target) => {
-    const inputParent = target.parentElement;
-    const inputName = target.name;
-    const inputErrMsgEle = document.querySelector(`[data-message="${inputName}"`);
-    if (target === nameInputEle) {
-      inputErrMsgEle.textContent = inputName + '不可空白';
+    if (allValueAreCorrect) {
+      displayLoading();
+      const inputValue = getInputValue(nameInputEle, phoneInputEle, emailInputEle, addressInputEle, paymentSelectEle);
+      const sentProductData = await sendOrder(inputValue);
+      render(document.querySelector('#root'), ThankyouPage.render(sentProductData));
+      hideLoading();
     }
   };
+
 
   // 如果有商品才會出現
   if (ele) {
     ele.addEventListener('submit', handleSubmit);
-    ele.addEventListener('change', handleChange);
   }
 };
 
@@ -301,6 +413,7 @@ const Cart = {
     addDeleteAllProductsEvent();
     addGoToProductPageEvent();
     addGuessClickEvent();
+    addCustomerInfoFormChangeEvent();
     addCustomerInfoFormSubmitEvent();
   },
   updateCartDataLocally: async () => {

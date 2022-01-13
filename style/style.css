@@ -797,11 +797,12 @@ footer {
   font-weight: 600;
   color: #c72424;
   position: absolute;
-  right: -15%;
+  left: 105%;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   margin: 0;
+  white-space: nowrap;
 }
 
 @media (max-width: 767px) {
@@ -926,6 +927,44 @@ footer {
   opacity: 1;
 }
 
+.shoppingCart-table {
+  margin: 0 auto;
+  font-size: 1.25rem;
+}
+
+.shoppingCart-table p {
+  margin: 0;
+}
+
+.shoppingCart-table img {
+  max-width: 100px;
+}
+
+.shoppingCart-table tr {
+  border-bottom: 1px solid #b9b9b9;
+}
+
+.shoppingCart-table tr:nth-of-type(1),
+.shoppingCart-table tr:last-of-type {
+  border: 0;
+}
+
+.shoppingCart-table th,
+.shoppingCart-table td {
+  padding: 1rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .shoppingCart .overflowWrap {
+    overflow: scroll;
+  }
+}
+
+.shoppingCart-table {
+  max-width: 700px;
+}
+
 .swiper {
   width: 100%;
   height: 400px;
@@ -943,5 +982,76 @@ footer {
   display: block;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.loading {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  z-index: 4;
+}
+
+.loading:after {
+  width: 100px;
+  height: 100px;
+  content: "";
+  border: 15px solid #fdfdfd;
+  border-top-color: #2a1466;
+  border-bottom-color: #2a1466;
+  border-radius: 50%;
+  -webkit-animation: loading 2.5s infinite;
+          animation: loading 2.5s infinite;
+}
+
+@-webkit-keyframes loading {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}
+
+@keyframes loading {
+  to {
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+  }
+}
+
+.loading_active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(191, 191, 191, 0.5);
+  z-index: 3;
+  display: none;
+}
+
+.overlay_active {
+  display: block;
+}
+
+.footer-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 /*# sourceMappingURL=style.css.map */

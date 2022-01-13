@@ -1,6 +1,6 @@
 const Compare = () => {
   return (`
-  <section class="container-fluid py-5 compare">
+  <section class="container-fluid py-5 compare" id="compare">
     <div class="container-xl">
       <h3 class="title">傢俱比較</h3>
       <table class="compare-table">

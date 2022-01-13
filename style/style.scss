@@ -632,10 +632,11 @@ footer {
     font-weight: 600;
     color: #c72424;
     position: absolute;
-    right: -15%;
+    left: 105%;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
+    white-space: nowrap;
     @include mobile {
       position: relative;
       top: 10px;
@@ -746,6 +747,40 @@ footer {
     }
   }
 }
+
+// thank page
+.shoppingCart {
+  &-table {
+    margin: 0 auto;
+    font-size: 1.25rem;
+    p {
+      margin: 0;
+    }
+    img {
+      max-width: 100px;
+    }
+    tr {
+      border-bottom: 1px solid #b9b9b9;
+    }
+    tr:nth-of-type(1),
+    tr:last-of-type {
+      border: 0;
+    }
+    th,
+    td {
+      padding: 1rem;
+      white-space: nowrap;
+    }
+  }
+  .overflowWrap {
+    @include mobile {
+      overflow: scroll;
+    }
+  }
+  &-table {
+    max-width: 700px;
+  }
+}
 // swiper
 
 .swiper {
@@ -763,4 +798,60 @@ footer {
     display: block;
     object-fit: cover;
   }
+}
+
+.loading {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  z-index: 4;
+
+  &:after {
+    width: 100px;
+    height: 100px;
+    content: "";
+    border: 15px solid #fdfdfd;
+    border-top-color: #2a1466;
+    border-bottom-color: #2a1466;
+    border-radius: 50%;
+    animation: loading 2.5s infinite;
+  }
+
+  @keyframes loading {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  &_active {
+    display: flex;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(191, 191, 191, 0.5);
+  z-index: 3;
+  display: none;
+  &_active {
+    display: block;
+  }
+}
+
+// footer always bottom
+.footer-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

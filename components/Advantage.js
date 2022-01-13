@@ -1,6 +1,6 @@
 const Advantage = () => {
   return (`
-<section class="container-xl my-5 advantage">
+<section class="container-xl my-5 advantage" id="advantage">
       <h3 class="title">床墊優勢</h3>
       <ul class="row advantage-list">
         <li class="col-4 d-flex flex-column advantage-item">

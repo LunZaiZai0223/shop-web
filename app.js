@@ -10,7 +10,7 @@ import Guess from './components/Guess.js';
 import { getAllProductsData, fetchOneProductData } from './api/apiHelper.js';
 
 // import utils
-import { render, hideBanner, displayLoading, hideLoading } from './utils.js';
+import { render, hideBanner, displayLoading, hideLoading, addBlurToFocusNavBarList } from './utils.js';
 
 const rootEle = document.querySelector('#root');
 
@@ -131,7 +131,7 @@ window.addEventListener('load', async () => {
   console.log(viewState.getCurrentView());
   changePage(route);
   hideLoading();
-
+  addBlurToFocusNavBarList();
   // const a = await getAllProductsData();
   // console.log(a);
   // await Home.updateProductData();

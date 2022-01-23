@@ -44,7 +44,7 @@ export function deleteAllCartProducts () {
   });
 }
 
-export function addProductsIntoCart (productId) {
+export async function addProductsIntoCart (productId) {
   console.log('hi add product into cart');
   console.log(productId);
   const url = 'https://livejs-api.hexschool.io/api/livejs/v1/customer/lunnnnnnn/carts';
@@ -54,7 +54,7 @@ export function addProductsIntoCart (productId) {
       quantity: 1
     }
   };
-  axios.post(url, config);
+  await axios.post(url, config);
 }
 
 export function changeProductsQuantity (data) {

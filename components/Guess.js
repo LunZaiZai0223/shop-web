@@ -21,6 +21,7 @@ const createGuessItem = (products) => {
   let item = '';
 
   products.forEach((product) => {
+    /* html */
     item += (`
       <li class="mb-3 mb-md-0 col-md-4 guess-list-item">
         <img

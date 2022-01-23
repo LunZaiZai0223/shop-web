@@ -100,7 +100,7 @@ const Home = {
     const item = (`
     ${Advantage()}
     ${Compare()}
-    ${Recommendation()}
+    ${Recommendation.render()}
     ${How()}
 
     <section class="container-xl product" id="productList">
@@ -129,6 +129,7 @@ const Home = {
     document.querySelector('[data-product-select]').addEventListener('change', handleChange);
     // product list click event
     document.querySelector('[data-product-list]').addEventListener('click', handleClick);
+    Recommendation.after_render();
     showBanner();
   }
 

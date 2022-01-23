@@ -156,7 +156,10 @@ const addGuessClickEvent = () => {
     console.log(productIdAndType);
     addingProductIntoCart(productIdAndType);
     if (productIdAndType.type === 'add') {
-      reRenderCartPage();
+      displayLoading();
+      setTimeout(reRenderCartPage, 2000);
+      setTimeout(hideLoading, 2000);
+      console.log('need rerender');
     }
     const productData = await getOneProductData(productIdAndType);
     addProductIdToHash(productData);

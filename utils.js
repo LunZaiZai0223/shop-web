@@ -125,8 +125,8 @@ export function getProductIdAndType (target) {
  * 2. 顯示提示 
  */
 export function addingProductIntoCart ({ type, productId }) {
-  type === 'add' && ((productId) => {
-    addProductsIntoCart(productId);
+  type === 'add' && (async (productId) => {
+    await addProductsIntoCart(productId);
     showAddingProductAlert();
   })(productId);
 }
@@ -152,4 +152,12 @@ export function addProductIdToHash (productData) {
     })(id);
   }
 
+}
+
+export function addBlurToFocusNavBarList () {
+  const navbarListEle = document.querySelector('.navbar-list');
+  navbarListEle.addEventListener('click', (event) => {
+    event.target.blur();
+    console.log('close');
+  });
 }

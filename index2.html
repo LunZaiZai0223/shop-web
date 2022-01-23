@@ -20,12 +20,12 @@
 </head>
 
 <body>
-  <header class="container-xl">
-    <nav class="navbar">
-      <h1 class="navbar-brand">
-        <a href="#">WOWOROOM</a>
-      </h1>
-      <span class="navbar-hamburger-btn" tabindex="0"></span>
+  <header class="container-xl d-flex align-items-center justify-content-between">
+    <h1 class="navbar-brand">
+      <a href="#">WOWOROOM</a>
+    </h1>
+    <nav class="navbar" tabindex="0">
+      <!-- <span class="navbar-hamburger-btn" tabindex="0"></span> -->
       <ul class="navbar-list">
         <li class="navbar-item">
           <a href="#advantage">床墊優勢</a>
@@ -45,13 +45,13 @@
         <li class="navbar-item">
           <a href="#cartInfo">購物車</a>
         </li>
-        <button class="close-navbar-list-btn">
-          <span class="material-icons">
-            clear
-          </span>
-        </button>
       </ul>
     </nav>
+    <button class="close-navbar-list-btn">
+      <span class="material-icons">
+        clear
+      </span>
+    </button>
   </header>
   <div class="header-underline d-md-block d-none"></div>
 
@@ -426,6 +426,15 @@
 
     </section>
   </div>
+
+  <button id="back-to-top-btn" class="d-flex flex-column gap-2">
+    <span class="material-icons">
+      north
+    </span>
+    <span class="back-to-top-text">
+      Top
+    </span>
+  </button>
 
   <footer class="footer">
     <div class="container-xl py-md-3">

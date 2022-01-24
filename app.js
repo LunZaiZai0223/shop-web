@@ -10,7 +10,7 @@ import Guess from './components/Guess.js';
 import { getAllProductsData, fetchOneProductData } from './api/apiHelper.js';
 
 // import utils
-import { render, hideBanner, displayLoading, hideLoading, addBlurToFocusNavBarList } from './utils.js';
+import { render, hideBanner, displayLoading, hideLoading, addBlurToFocusNavBarList, getBackToTopButton, displayBackToTopButton, hideBackToTopButton, handleClickGoToBackButton } from './utils.js';
 
 const rootEle = document.querySelector('#root');
 
@@ -103,6 +103,21 @@ const changePage = async (route) => {
   hideLoading();
 };
 
+// scroll event
+const addScrollEvent = () => {
+  const backToTopButton = getBackToTopButton();
+  window.addEventListener('scroll', () => {
+    const currentClientHeight = document.documentElement.clientHeight;
+    const currentScrollY = window.scrollY;
+    displayBackToTopButton(currentClientHeight, currentScrollY, backToTopButton);
+    hideBackToTopButton(currentClientHeight, currentScrollY, backToTopButton);
+    backToTopButton.addEventListener('click', handleClickGoToBackButton);
+  });
+};
+
+
+
+// hashchange event
 window.addEventListener('hashchange', () => {
   console.log('hash changed');
   console.log('current hast:', routeState.getRoutes(location.hash));
@@ -132,6 +147,7 @@ window.addEventListener('load', async () => {
   changePage(route);
   hideLoading();
   addBlurToFocusNavBarList();
+  addScrollEvent();
   // const a = await getAllProductsData();
   // console.log(a);
   // await Home.updateProductData();

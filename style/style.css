@@ -1116,7 +1116,11 @@ footer {
 #back-to-top-btn {
   position: fixed;
   bottom: 0;
-  right: 0;
+  left: 100%;
+  background-color: #6a33f8;
+  border: 0;
+  color: #fff;
+  z-index: 999;
 }
 
 .back-to-top-text {

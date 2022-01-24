@@ -158,6 +158,28 @@ export function addBlurToFocusNavBarList () {
   const navbarListEle = document.querySelector('.navbar-list');
   navbarListEle.addEventListener('click', (event) => {
     event.target.blur();
-    console.log('close');
   });
+}
+
+export function getBackToTopButton () {
+  const backToTopBtn = document.querySelector('#back-to-top-btn');
+  return backToTopBtn;
+}
+
+export function displayBackToTopButton (currentClientHeight, scrollY, btn) {
+  if (currentClientHeight < scrollY) {
+    btn.classList.remove('d-none');
+    btn.classList.add('d-flex');
+  }
+}
+
+export function hideBackToTopButton (currentClientHeight, scrollY, btn) {
+  if (currentClientHeight > scrollY) {
+    btn.classList.remove('d-flex');
+    btn.classList.add('d-none');
+  }
+}
+
+export function handleClickGoToBackButton () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }

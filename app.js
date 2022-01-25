@@ -4,13 +4,12 @@ import Cart from './pages/Cart.js';
 import Product from './pages/Product.js';
 import About from './pages/About.js';
 import FAQ from './pages/FAQ.js';
-import Guess from './components/Guess.js';
 
 // import api
-import { getAllProductsData, fetchOneProductData } from './api/apiHelper.js';
+import { fetchOneProductData } from './api/apiHelper.js';
 
 // import utils
-import { render, hideBanner, displayLoading, hideLoading, addBlurToFocusNavBarList, getBackToTopButton, displayBackToTopButton, hideBackToTopButton, handleClickGoToBackButton } from './utils.js';
+import { render, hideBanner, displayLoading, hideLoading, addBlurToFocusNavBarList, getBackToTopButton, displayBackToTopButton, hideBackToTopButton, handleClickGoToBackButton, footerFree } from './utils.js';
 
 const rootEle = document.querySelector('#root');
 
@@ -68,38 +67,35 @@ const checkNeedRender = (newView) => {
 };
 
 const changePage = async (route) => {
-  console.log('start change page');
   displayLoading();
   if (route === 'cartInfo') {
-    console.log('render cart');
     hideBanner();
     await Cart.updateCartDataLocally();
     render(rootEle, Cart.render());
     Cart.after_render();
   } else if (route === 'homePage') {
-    console.log('render to homepage');
     render(rootEle, Home.render());
     Home.after_render();
+    footerFree();
   } else if (route === 'productInfo') {
-    console.log('productInfo');
     hideBanner();
     const currentHash = location.hash;
     const productId = currentHash.slice(1);
     const [productData] = await fetchOneProductData(productId);
     render(rootEle, Product.render(productData));
     Product.after_render();
+    footerFree();
   } else if (route === 'aboutPage') {
-    console.log('render about page');
     hideBanner();
     render(rootEle, About.render());
     About.after_render();
+    footerFree();
   } else if (route === 'faqPage') {
-    console.log('render faq');
     hideBanner();
     render(rootEle, FAQ.render());
     FAQ.after_render();
+    footerFree();
   }
-  console.log('end change page');
   hideLoading();
 };
 
@@ -119,14 +115,11 @@ const addScrollEvent = () => {
 
 // hashchange event
 window.addEventListener('hashchange', () => {
-  console.log('hash changed');
-  console.log('current hast:', routeState.getRoutes(location.hash));
   const currentHash = location.hash;
   const currentPage = routeState.getRoutes(currentHash);
   const sameView = checkNeedRender(currentPage);
   viewState.setCurrentView(currentPage);
   if (!sameView) {
-    console.log('need render page');
     changePage(currentPage);
   }
 });
@@ -134,27 +127,14 @@ window.addEventListener('hashchange', () => {
 // 只要有重新載入就會觸發 load event 
 // => refresh / first visit
 window.addEventListener('load', async () => {
-  console.log('start load event');
   displayLoading();
   // 不管怎樣都先取得全部商品的資料
   await Home.updateProductData();
   const currentHash = location.hash || null;
-  console.log(currentHash);
   const route = routeState.getRoutes(currentHash) || 'homePage';
-  // Guess();
   viewState.setCurrentView(route);
-  console.log(viewState.getCurrentView());
   changePage(route);
   hideLoading();
   addBlurToFocusNavBarList();
   addScrollEvent();
-  // const a = await getAllProductsData();
-  // console.log(a);
-  // await Home.updateProductData();
-  // const b = Home.getProductData();
-  // console.log(b);
-  // console.log(document.querySelector('#root'));
-  // render(document.querySelector('#root'), Home.render());
-  // Home.after_render();
-  // console.log('end load event');
 });

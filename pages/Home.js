@@ -44,10 +44,8 @@ const handleChange = (event) => {
 const handleClick = async (event) => {
   event.preventDefault();
   const productTypeAndId = getProductIdAndType(event.target);
-  console.log(productTypeAndId);
   addingProductIntoCart(productTypeAndId);
   const productData = await getOneProductData(productTypeAndId);
-  console.log(productData);
   addProductIdToHash(productData);
 };
 
@@ -66,7 +64,6 @@ const getFilterResult = (filterWord) => {
  * @returns {HTML Element}
  */
 const createProductItemEle = (filterResult) => {
-  console.log(filterResult);
   let item = '';
 
   filterResult.forEach((result) => {
@@ -84,8 +81,8 @@ const createProductItemEle = (filterResult) => {
         <div class="d-flex justify-content-between my-3 flex-column product-item-content">
           <h3>${result.title}</h3>
           <div>
-            <p class="m-0 product-item-content-original-price">NT$${result.origin_price}</p>
-            <p class="product-item-content-price">NT$${result.price}</p>
+            <p class="m-0 product-item-content-original-price">NT$${result.origin_price.toLocaleString('en-US')}</p>
+            <p class="fw-bold product-item-content-price">NT$${result.price.toLocaleString('en-US')}</p>
           </div>
         </div>
       </li>
@@ -132,9 +129,6 @@ const Home = {
     Recommendation.after_render();
     showBanner();
   }
-
-
-
 };
 
 export default Home;

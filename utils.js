@@ -5,12 +5,10 @@ import { fetchOneProductData, addProductsIntoCart } from './api/apiHelper.js';
  * @param {HTMLELes} eleItems 
  */
 export function render (bindDOM, eleItems) {
-  console.log('進入 render');
   if (!eleItems) {
     console.log('沒達成 render 條件');
     return;
   }
-  console.log('準備 render');
   bindDOM.innerHTML = eleItems;
 }
 
@@ -39,7 +37,7 @@ export function showAddingProductAlert () {
   document.querySelector('[data-alert-card]').classList.add('alert-success', 'show-alert');
 
   // 兩秒後自動刪除 Alert
-  setTimeout(() => { hideAlter(); }, 2000);
+  setTimeout(() => { hideAlter(); }, 1000);
 }
 
 export function showDeletingProductAlert () {
@@ -48,41 +46,16 @@ export function showDeletingProductAlert () {
   document.querySelector('[data-alert-card]').classList.remove('hide-alert', 'alert-success');
   document.querySelector('[data-alert-card]').classList.add('alert-danger', 'show-alert');
 
-  setTimeout(() => { hideAlter(); }, 2000);
+  setTimeout(() => { hideAlter(); }, 1000);
 }
 
 export function hideAlter () {
-  document.querySelector('[data-alert-card]').classList.remove('show-alert');
   document.querySelector('[data-alert-card]').classList.add('hide-alert');
   setTimeout(() => {
     document.querySelector('[data-alert-card]').classList.remove('alert-danger', 'alert-success');
-  }, 1000);
+    document.querySelector('[data-alert-card]').classList.remove('show-alert');
+  }, 1500);
 }
-
-// export function hideDeletingProductAlert () {
-// document.querySelector('[data-alert-card]').classList.remove('show-alert');
-// document.querySelector('[data-alert-card]').classList.add('hide-alert');
-// }
-
-// export function showCustomerAlert () {
-// // 更改 icon
-// document.querySelector('[data-alert-card]').classList.remove('hide-alert');
-// document.querySelector('[data-alert-icon]').innerHTML = '<i class="fas fa-exclamation-circle"></i>';
-// document.querySelector('[data-alert-card-text]').textContent = '預定資料填寫不正確';
-// document.querySelector('[data-alert-card]').classList.add('alert-danger');
-// document.querySelector('[data-alert-card]').classList.add('show-alert');
-
-// // 兩秒後自動刪除 Alert
-// setTimeout(() => { hideDeletingProductAlert(); }, 2000);
-// }
-
-// // 綁定刪除卡片事件
-// document.querySelector('[data-alert-card]').addEventListener('click', (event) => {
-// const targetNodeName = event.target.nodeName;
-// if (targetNodeName === 'SPAN') {
-// hideDeletingProductAlert();
-// }
-// });
 
 export function hideBanner () {
   const banner = document.querySelector('[data-banner]');
@@ -99,7 +72,6 @@ export function scrollMove () {
   const topPosition = rootEle.offsetTop;
   window.scrollTo(0, topPosition - 32);
 }
-
 
 export function getProductIdAndType (target) {
   const result = {
@@ -182,4 +154,14 @@ export function hideBackToTopButton (currentClientHeight, scrollY, btn) {
 
 export function handleClickGoToBackButton () {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+export function footerAlwaysBeBottom () {
+  const footerEle = document.querySelector('footer');
+  footerEle.classList.add('footer-bottom');
+}
+
+export function footerFree () {
+  const footerEle = document.querySelector('footer');
+  footerEle.classList.remove('footer-bottom');
 }

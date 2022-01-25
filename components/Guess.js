@@ -30,11 +30,13 @@ const createGuessItem = (products) => {
           data-product-id-show="${product.id}">
         <a 
           href=""
-          data-product-id-add="${product.id}">
+          data-product-id-add="${product.id}"
+          class="py-2"
+          >
         加入購物車</a>
-        <div class="guess-list-item-body">
+        <div class="mt-2 guess-list-item-body">
           <p class="mb-2">${product.title}</p>
-          <p class="m-0">NT$${product.price}</p>
+          <p class="m-0">NT$${product.price.toLocaleString('en-US')}</p>
         </div>
       </li>
     `);

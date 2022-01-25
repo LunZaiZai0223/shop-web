@@ -2,7 +2,7 @@
 import { getCartProductsData, changeProductsQuantity, deleteOneProduct, deleteAllCartProducts, fetchOneProductData, getCompletedOrderData } from '../api/apiHelper.js';
 
 // import utils
-import { getProductIdAndType, addingProductIntoCart, getOneProductData, addProductIdToHash, displayLoading, hideLoading, showDeletingProductAlert } from '../utils.js';
+import { getProductIdAndType, addingProductIntoCart, getOneProductData, addProductIdToHash, displayLoading, hideLoading, showDeletingProductAlert, footerAlwaysBeBottom, footerFree } from '../utils.js';
 
 // import components
 import CartNoProduct from "../components/CartNoProduct.js";
@@ -31,7 +31,7 @@ const createCartItem = ({ carts }) => {
           </div>
         </td>
         <td>
-          NT$${price}
+          NT$${price.toLocaleString('en-US')}
         </td>
         <td>
           <div class="cart-qty">
@@ -39,7 +39,7 @@ const createCartItem = ({ carts }) => {
           </div>
         </td>
         <td>
-          NT$${price * quantity}
+          NT$${(price * quantity).toLocaleString('en-US')}
         </td>
         <td>
           <span style="cursor: pointer" class="material-icons cart-delete-btn" data-delete-single-product-btn data-cart-id="${id}">
@@ -132,7 +132,6 @@ const addDeleteAllProductsEvent = () => {
 
 const addGoToProductPageEvent = () => {
   const table = document.querySelector('[data-cart-table]');
-  console.log(table);
   if (table) {
     table.addEventListener('click', async (event) => {
       const { productId } = event.target.dataset;
@@ -386,7 +385,7 @@ const Cart = {
               <tr>
                 <th class="total-table-price">總計</th>
 
-                <th class="total-table-price">NT$${totalPrice(cartDataLocally)}
+                <th class="total-table-price">NT$${totalPrice(cartDataLocally).toLocaleString('en-US')}
                 </th>
 
               </tr>
@@ -418,12 +417,15 @@ const Cart = {
     addGuessClickEvent();
     addCustomerInfoFormChangeEvent();
     addCustomerInfoFormSubmitEvent();
+    if (cartDataLocally.carts.length === 0) {
+      footerAlwaysBeBottom();
+    } else {
+      footerFree();
+    }
   },
   updateCartDataLocally: async () => {
     cartDataLocally = await getCartProductsData();
-    console.log(cartDataLocally);
   }
 };
-
 
 export default Cart;

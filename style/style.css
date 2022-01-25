@@ -128,7 +128,7 @@ body {
     position: absolute;
     top: 100%;
     right: 0;
-    z-index: 2;
+    z-index: 50;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -208,6 +208,10 @@ body {
   background-color: #000000;
 }
 
+.banner {
+  position: relative;
+}
+
 .banner-text-wrapper {
   position: absolute;
   bottom: 5rem;
@@ -215,6 +219,18 @@ body {
   color: #ffff;
   z-index: 2;
   font-weight: 600;
+}
+
+@media screen and (max-width: 650px) {
+  .banner-text-wrapper {
+    right: 3rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .banner-text-wrapper {
+    right: 1rem;
+  }
 }
 
 .advantage-list {
@@ -340,13 +356,24 @@ body {
   text-decoration: none;
   font-size: 1.25rem;
   font-weight: 600;
-  -webkit-transition: background-color 0.2s;
-  transition: background-color 0.2s;
+}
+
+@media screen and (min-width: 576px) {
+  .product-item-add-btn {
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+  }
 }
 
 .product-item-add-btn:hover {
-  background-color: #6a33f8;
-  color: #ffff;
+  color: #fff;
+}
+
+@media screen and (min-width: 576px) {
+  .product-item-add-btn:hover {
+    background-color: #6a33f8;
+    color: #ffff;
+  }
 }
 
 @media (max-width: 767px) {

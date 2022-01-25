@@ -3,7 +3,7 @@ import { scrollMove } from "../utils.js";
 const About = {
   render: () => {
     const item = (`
-  <section class="my-md-5 container-xl about">
+  <section class="my-md-5 my-4 container-xl about">
     <h3 class="title">關於我們</h3>
     <img
       src="https://images.unsplash.com/photo-1552960504-34e1e1be3f53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"

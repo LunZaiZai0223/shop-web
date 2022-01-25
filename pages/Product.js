@@ -22,8 +22,8 @@ const Product = {
         <h1 class="single-product-text-title" data-product-title>
         ${product.title}
         </h1>
-        <p class="single-product-text-original-price mb-2" data-product-original-price>NT$ ${product.origin_price}</p>
-        <p class="single-product-text-price mb-2" data-product-price>NT$ ${product.price}</p>
+        <p class="single-product-text-original-price mb-2" data-product-original-price>NT$ ${product.origin_price.toLocaleString('en-US')}</p>
+        <p class="single-product-text-price mb-2" data-product-price>NT$ ${product.price.toLocaleString('en-US')}</p>
         <p><strong style="color: #ff0000">兩週內快速出貨</strong></p>
         <p class="mb-2">【商品分類】</p>
         <p data-product-category>${product.category}</p>

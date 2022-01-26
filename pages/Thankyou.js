@@ -58,8 +58,8 @@ function createCartCounterEle ({ total }) {
       <td></td>
       <td></td>
       <td>
-        <p>總金額</p>
+        <p class="fw-bold">總金額</p>
       </td>
-      <td>NT$${total.toLocaleString('en-US')}</td>
+      <td class="fw-bold">NT$${total.toLocaleString('en-US')}</td>
     </tr>`);
 }

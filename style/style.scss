@@ -109,7 +109,9 @@ body {
       text-decoration: none;
       color: #000000;
       &:hover {
-        color: $color-purple;
+        @media screen and (min-width: 576px) {
+          color: $color-purple;
+        }
       }
     }
   }
@@ -155,8 +157,10 @@ body {
       transition: border-bottom 0.3s;
       white-space: nowrap;
       &:hover {
-        color: $color-purple;
-        border-bottom: 2px solid $color-purple;
+        @media screen and (min-width: 576px) {
+          color: $color-purple;
+          border-bottom: 2px solid $color-purple;
+        }
       }
     }
   }
@@ -179,7 +183,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   &:hover {
-    color: $color-purple;
+    @media screen and (min-width: 576px) {
+      color: $color-purple;
+    }
   }
 }
 
@@ -367,9 +373,11 @@ body {
 .product-image-wrapper {
   overflow: hidden;
   &:hover {
-    img {
-      filter: brightness(1.05);
-      transform: scale(1.05);
+    @media screen and (min-width: 576px) {
+      img {
+        filter: brightness(1.05);
+        transform: scale(1.05);
+      }
     }
   }
 }
@@ -390,8 +398,10 @@ footer {
       text-decoration: none;
       transition: border-bottom 0.3s, color 0.3s;
       &:hover {
-        border-bottom: 1px solid $color-purple;
-        color: $color-purple;
+        @media screen and (min-width: 576px) {
+          border-bottom: 1px solid $color-purple;
+          color: $color-purple;
+        }
       }
     }
   }
@@ -484,9 +494,12 @@ footer {
     color: #000000;
     background-color: transparent;
     transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
     &:hover {
-      background-color: #000000;
-      color: #ffff;
+      @media screen and (min-width: 576px) {
+        background-color: #000000;
+        color: #ffff;
+      }
     }
   }
   &-total-price {
@@ -535,8 +548,10 @@ footer {
       padding: 5px 10px;
       cursor: pointer;
       &:hover {
-        background-color: $color-purple;
-        color: #ffff;
+        @media screen and (min-width: 576px) {
+          background-color: $color-purple;
+          color: #ffff;
+        }
       }
     }
     &-body {
@@ -674,7 +689,9 @@ footer {
     border: 0;
     border-radius: 5px;
     &:hover {
-      background-color: $color-purple;
+      @media screen and (min-width: 576px) {
+        background-color: $color-purple;
+      }
     }
   }
 }
@@ -713,8 +730,10 @@ footer {
       text-decoration: none;
       transition: background-color 0.2s;
       &:hover {
-        background-color: $color-purple;
-        color: #ffff;
+        @media screen and (min-width: 576px) {
+          background-color: $color-purple;
+          color: #ffff;
+        }
       }
     }
   }

@@ -109,8 +109,10 @@ body {
   color: #000000;
 }
 
-.navbar-brand a:hover {
-  color: #6a33f8;
+@media screen and (min-width: 576px) {
+  .navbar-brand a:hover {
+    color: #6a33f8;
+  }
 }
 
 .navbar-list {
@@ -172,9 +174,11 @@ body {
   white-space: nowrap;
 }
 
-.navbar-item a:hover {
-  color: #6a33f8;
-  border-bottom: 2px solid #6a33f8;
+@media screen and (min-width: 576px) {
+  .navbar-item a:hover {
+    color: #6a33f8;
+    border-bottom: 2px solid #6a33f8;
+  }
 }
 
 @media screen and (max-width: 485px) {
@@ -198,8 +202,10 @@ body {
           transform: translateX(-50%);
 }
 
-.close-navbar-list-btn:hover {
-  color: #6a33f8;
+@media screen and (min-width: 576px) {
+  .close-navbar-list-btn:hover {
+    color: #6a33f8;
+  }
 }
 
 .header-underline {
@@ -434,11 +440,13 @@ body {
   overflow: hidden;
 }
 
-.product-image-wrapper:hover img {
-  -webkit-filter: brightness(1.05);
-          filter: brightness(1.05);
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+@media screen and (min-width: 576px) {
+  .product-image-wrapper:hover img {
+    -webkit-filter: brightness(1.05);
+            filter: brightness(1.05);
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
 }
 
 footer {
@@ -462,9 +470,11 @@ footer {
   transition: border-bottom 0.3s, color 0.3s;
 }
 
-.footer-item a:hover {
-  border-bottom: 1px solid #6a33f8;
-  color: #6a33f8;
+@media screen and (min-width: 576px) {
+  .footer-item a:hover {
+    border-bottom: 1px solid #6a33f8;
+    color: #6a33f8;
+  }
 }
 
 .footer .social-list {
@@ -574,11 +584,14 @@ footer {
   background-color: transparent;
   -webkit-transition: background-color 0.3s, color 0.3s;
   transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap;
 }
 
-.cart-delete-all-products-btn:hover {
-  background-color: #000000;
-  color: #ffff;
+@media screen and (min-width: 576px) {
+  .cart-delete-all-products-btn:hover {
+    background-color: #000000;
+    color: #ffff;
+  }
 }
 
 .cart-total-price {
@@ -636,9 +649,11 @@ footer {
   cursor: pointer;
 }
 
-.guess-list-item a:hover {
-  background-color: #6a33f8;
-  color: #ffff;
+@media screen and (min-width: 576px) {
+  .guess-list-item a:hover {
+    background-color: #6a33f8;
+    color: #ffff;
+  }
 }
 
 .guess-list-item-body {
@@ -861,8 +876,10 @@ footer {
   border-radius: 5px;
 }
 
-.orderInfo-btn:hover {
-  background-color: #6a33f8;
+@media screen and (min-width: 576px) {
+  .orderInfo-btn:hover {
+    background-color: #6a33f8;
+  }
 }
 
 .single-product-image {
@@ -902,9 +919,11 @@ footer {
   transition: background-color 0.2s;
 }
 
-.single-product-text-add-btn:hover {
-  background-color: #6a33f8;
-  color: #ffff;
+@media screen and (min-width: 576px) {
+  .single-product-text-add-btn:hover {
+    background-color: #6a33f8;
+    color: #ffff;
+  }
 }
 
 .about-image {
